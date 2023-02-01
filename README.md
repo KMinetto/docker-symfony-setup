@@ -12,5 +12,13 @@ To use it, you need:
 
 ```bash
 git clone https://github.com/KMinetto/docker-symfony-setup name-of-your-project # Clone the repository
-docker-compose up -d # Create the container
+make init
+```
+
+You can get all commands in the Makefile with this command:
+
+```bash
+make help
+# or
+make
 ```
