@@ -1,9 +1,10 @@
 # Variables
 DOCKER = docker
 DOCKER_COMPOSE = docker-compose
-EXEC = ${DOCKER} exec -w /var/www/project www_project
+EXEC = ${DOCKER} exec -w /var/www/project www_php81_docker_symfony_setup
 PHP = ${EXEC} php
 NPM = ${EXEC} npm
+COMPOSER = ${EXEC} composer
 SYMFONY_CONSOLE = ${PHP} bin/console
 .DEFAULT_GOAL:= help
 .PHONY: help
@@ -16,6 +17,8 @@ RED = /bin/echo -e "\x1b[31m\#\# $1\x1b[0m"
 init: ## Initialize the project
 	${MAKE} docker-start
 	${MAKE} composer-install
+	${MAKE} npm-install
+	${MAKE} npm-dev
 	@$(call GREEN,"The application is available at: http://127.0.0.1:8080/.")
 
 stop: ## Stop the application
@@ -35,6 +38,16 @@ composer-install: ## Install composer dependencies
 	${COMPOSER} install
 composer-update: ## Update composer dependencies
 	${COMPOSER} update
+
+## -- NPM --
+npm-install: ## Install Webpack Encore dependencies
+	${NPM} install
+npm-dev: ## Build style in scripts for dev
+	${NPM} run dev
+npm-watch: ## Build style in scripts for dev
+	${NPM} run watch
+npm-build: ## Build style in scripts for prod
+	${NPM} run build
 
 ## -- Database --
 database-init: ## init the database

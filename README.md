@@ -13,6 +13,7 @@ To use it, you need:
 ```bash
 git clone https://github.com/KMinetto/docker-symfony-setup name-of-your-project # Clone the repository
 make init
+
 ```
 Don't forget to give you rights (In development only) :
 
