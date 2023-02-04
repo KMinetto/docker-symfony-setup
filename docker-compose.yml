@@ -13,7 +13,7 @@ services:
       - ./:/var/www/
       - ./Docker/vhosts/vhosts.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - www-php81
+      - www_php81
       - db
     networks:
       - dev
@@ -45,14 +45,14 @@ services:
       - dev
 
   # PHP
-  www-php81:
+  www_php81:
     build:
       context: .
       dockerfile: ./Docker/Dockerfile
     container_name: www_php81_docker_symfony_setup
     restart: always
     ports:
-      - "8000:80"
+      - "9000:9000"
     stdin_open: true
     tty: true
     volumes:
